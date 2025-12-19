@@ -190,9 +190,9 @@ const themes = [
         primaryColor: "#F4845F"
     },
     {
-        background: "#F25F5C",
+        background: "#F4f4f4",
         color: "#000000",
-        primaryColor: "#642B36"
+        primaryColor: "#192A51"
     },
     {
         background: "#231F20",
