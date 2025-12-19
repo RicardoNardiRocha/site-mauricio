@@ -56,7 +56,8 @@ cards.forEach((card, index) => {
 
 confirmBtn.addEventListener("click", () => {
   if (selectedLink) {
-    window.location.href = selectedLink;
+    window.location.assign(selectedLink.trim());
+
   }
 });
 
