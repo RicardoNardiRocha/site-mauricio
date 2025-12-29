@@ -12,7 +12,11 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
 auth.onAuthStateChanged(user => {
-  if (!user) {
+  if (user) {
+    // User is signed in, show the page content.
+    document.body.style.display = 'flex';
+  } else {
+    // No user is signed in, redirect to login.
     window.location.href = "../index.html";
   }
 });
