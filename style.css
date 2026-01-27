@@ -1,9 +1,9 @@
 /* ================= RESET ================= */
 
 :root {
-    --background: #f4f4f4;
-    --color: #ffffff;
-    --primary-color: #0f3460;
+    --background: #231F20;
+    --color: #FFF;
+    --primary-color: #BB4430;
 }
 * {
   box-sizing: border-box;
@@ -13,7 +13,11 @@ body {
     margin: 0;
     box-sizing: border-box;
     font-family: "poppins";
-    background: var(--background);
+    background-image: url(./assets/images/bg.png);
+    background-color: var(--background);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: var(--color);
     letter-spacing: 1px;
     transition: background 0.2s ease;
@@ -152,7 +156,7 @@ body {
 
 .opacity {
     opacity: 0.6;
-    color:rgba(0, 0, 0, 0.8);
+    color:rgba(255, 255, 255, 0.8);
 
 }
 
@@ -276,7 +280,7 @@ body {
 .welcome-overlay h1 {
   font-size: 42px;
   font-weight: 700;
-  color: #333;
+  color: rgba(255, 255, 255, 0.8);
   filter: blur(0);
   opacity: 1;
   transform: translateY(0);
