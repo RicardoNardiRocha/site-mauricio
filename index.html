@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <title>Pris Embalagens</title>
@@ -14,54 +15,55 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 </head>
+
 <body>
 
-<!-- LOGIN -->
- <section id="loginArea" class="containerglass">
-  <div class="login-container" >
+  <video class="bg-video" autoplay muted loop playsinline>
+    <source src="./assets/videos/BG.mp4" type="video/mp4" />
+  </video>
+  <div class="bg-overlay"></div>
 
-    <div class="circle circle-one"></div>
+  <a class="logo-fixed" href="/" aria-label="Voltar para o início">
+    <img src="./assets/images/logo pris.png" alt="Logo da empresa">
+  </a>
 
-    <div class="form-container">
-      <!-- <img 
+
+  <!-- LOGIN -->
+  <section id="loginArea" class="containerglass">
+    <div class="login-container">
+
+      <!-- <div class="circle circle-one"></div> -->
+
+      <div class="form-container">
+        <!-- <img 
         src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png"
         alt="illustration"
         class="illustration"
       /> -->
 
-      <h1 class="opacity">LOGIN</h1>
+        <h1 class="opacity">LOGIN</h1>
 
-      <form onsubmit="login(event)">
-        <input
-          type="email"
-          id="email"
-          placeholder="EMAIL"
-          required
-        />
+        <form onsubmit="login(event)">
+          <input type="email" id="email" placeholder="EMAIL" required />
 
-        <input
-          type="password"
-          id="senha"
-          placeholder="SENHA"
-          required
-        />
+          <input type="password" id="senha" placeholder="SENHA" required />
 
-        <button type="submit" class="opacity"> 
-          ENTRAR
-        </button>
-      </form>
+          <button type="submit" class="opacity">
+            ENTRAR
+          </button>
+        </form>
 
-      <p id="mensagem" class="opacity"></p>
+        <p id="mensagem" class="opacity"></p>
+      </div>
+
+      <!-- <div class="circle circle-two"></div> -->
+
     </div>
 
-    <div class="circle circle-two"></div>
+    <div class="theme-btn-container"></div>
+  </section>
 
-  </div>
-
-  <div class="theme-btn-container"></div>
-</section>
-
-<!-- 
+  <!-- 
     <section class="container">
         <div class="login-container">
             <div class="circle circle-one"></div>
@@ -81,104 +83,115 @@
     </section>
 -->
 
-<!-- NOME -->
-<div class="login-container" id="nomeArea" style="display:none;">
-  <h2>Antes de continuar</h2>
-  <input type="text" id="nomeInput" placeholder="Digite seu nome">
-  <button onclick="salvarNome()">Salvar e continuar</button>
-  <p id="mensagemNome"></p>
-</div>
-
-<!-- APP -->
-<div class="container" id="appArea" style="display:none;">
-
-  <!-- TOPO -->
-  <div class="top-bar">
-    <button onclick="logout()">Sair</button>
+  <!-- NOME -->
+  <div class="login-container" id="nomeArea" style="display:none;">
+    <h2>Antes de continuar</h2>
+    <input type="text" id="nomeInput" placeholder="Digite seu nome">
+    <button onclick="salvarNome()">Salvar e continuar</button>
+    <p id="mensagemNome"></p>
   </div>
 
-  <!-- BEM-VINDO -->
-  <div id="welcomeOverlay" class="welcome-overlay hide">
-    <h1 id="welcomeText"></h1>
-  </div>
+  <!-- APP -->
+  <div class="container" id="appArea" style="display:none;">
 
-  <!-- CAROUSEL -->
-  <div class="card-carousel closed">
+    <!-- TOPO -->
+    <div class="top-bar">
+      <button onclick="logout()">Sair</button>
+    </div>
 
-<!-- Macro Gestão-->
-<a class="card" data-link="pages/page1.html">
-      <div class="card-inner">
-        <div class="wrapper">
-          <img src="./assets/images/Macro gestao/1.png" class="cover-image">
-        </div>
-        <img src="./assets/images/Macro gestao/2.png" class="title">
-        <img src="./assets/images/Macro gestao/3.png" class="character">
-      </div>
-    </a>
-<!-- Micro Gestão -->
-    <a class="card" data-link="pages/page2.html">
-      <div class="card-inner">
-        <div class="wrapper">
-          <img src="./assets/images/Macro gestao/1.png" class="cover-image">
-        </div>
-        <img src="./assets/images/Micro Gestao/micro.png" class="title">
-        <img src="./assets/images/Micro Gestao/micro2.png" class="character">
-      </div>
-    </a>
-<!-- Inadimplencia -->
-    <a class="card" data-link="pages/page3.html">
-      <div class="card-inner">
-        <div class="wrapper">
-          <img src="./assets/images/Macro gestao/1.png" class="cover-image">
-        </div>
-        <img src="./assets/images/Inadimplencia/8.png" class="title">
-        <img src="./assets/images/Inadimplencia/9.png" class="character">
-      </div>
-    </a>
+    <!-- BEM-VINDO -->
+    <div id="welcomeOverlay" class="welcome-overlay hide">
+      <h1 id="welcomeText"></h1>
+    </div>
 
-<!-- DRE FINANCEIRO -->
-    <a class="card" data-link="pages/page4.html">
-      <div class="card-inner">
-        <div class="wrapper">
-          <img src="./assets/images/Macro gestao/1.png" class="cover-image">
+    <!-- CAROUSEL -->
+    <div class="card-carousel closed">
+
+      <!-- Macro Gestão-->
+      <a class="card" data-link="pages/page1.html">
+        <div class="card-inner">
+          <div class="wrapper">
+            <img src="./assets/images/Macro gestao/1.png" class="cover-image">
+          </div>
+          <img src="./assets/images/Macro gestao/2.png" class="title">
+          <img src="./assets/images/Macro gestao/3.png" class="character">
         </div>
-        <img src="./assets/images/DRE FINANCEIRO/11.png" class="title">
-        <img src="./assets/images/DRE FINANCEIRO/12.png" class="character">
-      </div>
-    </a>
-<!-- Fluxo de caixa -->
-    <a class="card" data-link="pages/page5.html">
-      <div class="card-inner">
-        <div class="wrapper">
-          <img src="./assets/images/Macro gestao/1.png" class="cover-image">
+      </a>
+      <!-- Micro Gestão -->
+      <a class="card" data-link="pages/page2.html">
+        <div class="card-inner">
+          <div class="wrapper">
+            <img src="./assets/images/Macro gestao/1.png" class="cover-image">
+          </div>
+          <img src="./assets/images/Micro Gestao/micro.png" class="title">
+          <img src="./assets/images/Micro Gestao/micro2.png" class="character">
         </div>
-        <img src="./assets/images/FLUXO DE CAIXA/14.png" class="title">
-        <img src="./assets/images/FLUXO DE CAIXA/15.png" class="character">
-      </div>
-    </a>
-<!-- OTE -->
-    <a class="card" data-link="pages/page6.html">
-      <div class="card-inner">
-        <div class="wrapper">
-          <img src="./assets/images/Macro gestao/1.png" class="cover-image">
+      </a>
+      <!-- Inadimplencia -->
+      <a class="card" data-link="pages/page3.html">
+        <div class="card-inner">
+          <div class="wrapper">
+            <img src="./assets/images/Macro gestao/1.png" class="cover-image">
+          </div>
+          <img src="./assets/images/Inadimplencia/8.png" class="title">
+          <img src="./assets/images/Inadimplencia/9.png" class="character">
         </div>
-        <img src="./assets/images/OTE/17.png" class="title">
-        <img src="./assets/images/OTE/18.png" class="character">
-      </div>
-    </a>
-<!--Faturamento -->
+      </a>
+
+      <!-- DRE FINANCEIRO -->
+      <a class="card" data-link="pages/page4.html">
+        <div class="card-inner">
+          <div class="wrapper">
+            <img src="./assets/images/Macro gestao/1.png" class="cover-image">
+          </div>
+          <img src="./assets/images/DRE FINANCEIRO/11.png" class="title">
+          <img src="./assets/images/DRE FINANCEIRO/12.png" class="character">
+        </div>
+      </a>
+      <!-- Fluxo de caixa -->
+      <a class="card" data-link="pages/page5.html">
+        <div class="card-inner">
+          <div class="wrapper">
+            <img src="./assets/images/Macro gestao/1.png" class="cover-image">
+          </div>
+          <img src="./assets/images/FLUXO DE CAIXA/14.png" class="title">
+          <img src="./assets/images/FLUXO DE CAIXA/15.png" class="character">
+        </div>
+      </a>
+      <!-- OTE -->
+      <a class="card" data-link="pages/page6.html">
+        <div class="card-inner">
+          <div class="wrapper">
+            <img src="./assets/images/Macro gestao/1.png" class="cover-image">
+          </div>
+          <img src="./assets/images/OTE/17.png" class="title">
+          <img src="./assets/images/OTE/18.png" class="character">
+        </div>
+      </a>
+      <!--Faturamento -->
       <a class="card" data-link="pages/page7.html">
-      <div class="card-inner">
-        <div class="wrapper">
-          <img src="./assets/images/Macro gestao/1.png" class="cover-image">
+        <div class="card-inner">
+          <div class="wrapper">
+            <img src="./assets/images/Macro gestao/1.png" class="cover-image">
+          </div>
+          <img src="./assets/images/Faturamento/20.png" class="title">
+          <img src="./assets/images/Faturamento/21.png" class="character">
         </div>
-        <img src="./assets/images/Faturamento/20.png" class="title">
-        <img src="./assets/images/Faturamento/21.png" class="character">
-      </div>
-    </a>
+      </a>
 
-  </div>
-<!-- 
+      <a class="card" data-link="pages/page8.html">
+        <div class="card-inner">
+          <div class="wrapper">
+            <img src="./assets/images/Macro gestao/1.png" class="cover-image">
+          </div>
+          <!-- <img src="./assets/images/ecommerce/2.png" class="title">  -->
+          <img src="./assets/images/ecommerce/3.png" class="character">
+        </div>
+      </a>
+
+
+    </div>
+    <!-- 
       <a class="card" data-link="pages/page7.html">
       <div class="card-inner">
         <div class="wrapper">
@@ -189,18 +202,19 @@
       </div>
     </a>
 -->
-  <!-- CONFIRMAR -->
-  <button id="confirmBtn" class="confirm-btn" disabled>
-    Confirmar
-  </button>
+    <!-- CONFIRMAR -->
+    <button id="confirmBtn" class="confirm-btn" disabled>
+      Confirmar
+    </button>
 
-  <!-- TOGGLE -->
-  <button class="toggle">
-    <i class="fa-regular fa-clone"></i>
-  </button>
+    <!-- TOGGLE -->
+    <button class="toggle">
+      <i class="fa-regular fa-clone"></i>
+    </button>
 
-</div>
+  </div>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
