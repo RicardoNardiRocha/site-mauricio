@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <title>Ecommerce</title>
@@ -11,65 +12,25 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
       font-family: "Montserrat", sans-serif;
       height: 100vh;
-      display: none; /* Ocultar por padrão */
+      display: none;
+      /* Ocultar por padrão */
       background: #f4f4f4;
+      overflow: hidden;
     }
 
-    /* ===== SIDEBAR ===== */
-    .sidebar {
-      width: 150px;
-      background: #111827;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      padding: 20px 15px;
-    }
-
-    .sidebar h2 {
-      font-size: 18px;
-      margin-bottom: 30px;
-    }
-
-    .menu a {
-      display: block;
-      padding: 12px 14px;
-      margin-bottom: 6px;
-      border-radius: 6px;
-      color: #d1d5db;
-      text-decoration: none;
-      font-size: 11px;
-    }
-
-    .menu a.active,
-    .menu a:hover {
-      background: #1f2937;
-      color: white;
-    }
-
-    .sidebar .bottom {
-      margin-top: auto;
-    }
-
-    .sidebar button {
-      width: 100%;
-      padding: 10px;
-      background: #e68c06;
-      border: none;
-      color: white;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 11px;
-    }
 
     /* ===== CONTENT ===== */
     .content {
       flex: 1;
+      min-width: 0;
       display: flex;
       flex-direction: column;
     }
@@ -82,10 +43,12 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 20px;
+      flex: 0 0 auto;
     }
 
     .iframe-container {
       flex: 1;
+      min-width: 0;
       background: black;
     }
 
@@ -93,61 +56,448 @@
       width: 100%;
       height: 100%;
       border: none;
+      display: block;
+    }
+
+
+    /* Sidebar2 */
+
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+    *,
+    *::after,
+    *::before {
+      box-sizing: inherit;
+    }
+
+    label,
+    button {
+      cursor: pointer;
+    }
+
+    figure {
+      margin-inline: 0;
+      margin-block: 0.25rem;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p {
+      margin: 0;
+      font-size: inherit;
+      line-height: 1.1;
+    }
+
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    /*body {
+    box-sizing: border-box;
+    display: grid;
+    place-content: center;
+    margin: 0;
+    min-block-size: 100vh;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(32deg, hsl(193 6 76), hsl(196 9 69) 50%);
+} */
+
+    :root {
+      --bg--primary: hsl(203, 7%, 92%);
+      --bg--active: hsla(203, 86%, 93%, 0.7);
+      --bg--hover: hsl(200, 7%, 84%);
+      --bg--focus: hsl(203, 100%, 100%);
+      --gray--primary: hsl(200, 10%, 50%);
+      --gray--secondary: hsl(200, 14%, 30%);
+
+      --dark--primary: hsl(203, 13%, 14%);
+      --dark--secondary: hsl(203, 4%, 29%);
+
+      --accent--primary: hsl(33, 93%, 47%);
+      --accent--secondary: hsl(33, 93%, 55%);
+
+
+      --expanded: 16.875rem;
+      --collapsed: 3.25rem;
+      --svg: 1.125rem;
+      --item: 2.5rem;
+      --brad-outer: 0.85rem;
+      --frame-space: 0.5rem;
+      --brad-inner: calc(var(--brad-outer) - var(--frame-space));
+    }
+
+    .vertical-sidebar {
+      margin: 0;
+      height: 100vh;
+      flex: 0 0 auto;
+      display: flex;
+      padding: 10px;
+      background: transparent;
+      font-family: "Poppins", sans-serif
+    }
+
+    nav {
+      background: var(--bg--primary);
+      display: flex;
+      flex-flow: column;
+      min-width: var(--collapsed);
+      border-radius: var(--brad-outer);
+      flex: 0 0 auto;
+      transition: flex-basis 300ms ease-out;
+      will-change: flex-basis;
+      padding: var(--frame-space);
+      box-shadow: 0 3px 5px #1233, 0 5px 17px #0003;
+    }
+
+    .vertical-sidebar :checked~nav {
+      flex-basis: var(--expanded);
+    }
+
+    .vertical-sidebar :not(:checked)~nav {
+      flex-basis: var(--collapsed);
+    }
+
+    header {
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .sidebar__toggle-container {
+      block-size: var(--item);
+      display: flex;
+      justify-content: end;
+    }
+
+    .nav__toggle {
+      block-size: 100%;
+      background: none;
+      transition: all 233ms ease-in;
+      border-radius: var(--brad-inner);
+      outline: 2px solid transparent;
+      outline-offset: -2px;
+      overflow: hidden;
+    }
+
+    .toggle--icons {
+      block-size: inherit;
+      aspect-ratio: 1;
+      display: inline-grid;
+      place-content: center;
+      grid-template-areas: "svg";
+      z-index: 10;
+    }
+
+    .toggle-svg-icon {
+      grid-area: svg;
+      fill: var(--gray--primary);
+      transition: fill 233ms ease-in;
+    }
+
+    .nav__toggle:hover {
+      outline: 2px solid var(--accent--primary);
+    }
+
+    .toggle--icons:hover .toggle-svg-icon {
+      fill: var(--dark--primary);
+    }
+
+    figure {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      container-type: inline-size;
+      gap: 0.375rem;
+      padding-bottom: 6px;
+    }
+
+    .codepen-logo {
+      margin-inline: auto;
+      display: block;
+      min-inline-size: 2.25rem;
+      max-inline-size: 45cqi;
+      aspect-ratio: 1;
+      block-size: 100%;
+      object-fit: cover;
+      transition: width 100ms linear;
+    }
+
+    figcaption {
+      text-align: center;
+    }
+
+    .user-id {
+      font-size: 1.0625rem;
+      font-weight: 500;
+      margin-block-end: 0.25rem;
+      color: var(--gray--secondary);
+    }
+
+    .user-role {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--gray--primary);
+    }
+
+    .sidebar__wrapper {
+      --list-gap: 0.5rem;
+      display: flex;
+      flex-flow: column;
+      gap: var(--list-gap);
+      margin-top: 6px;
+    }
+
+    .sidebar__list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-flow: column;
+      gap: 0.125rem;
+      overflow: hidden;
+    }
+
+    .sidebar__item {
+      block-size: var(--item);
+      border-radius: var(--brad-inner);
+    }
+
+    .item--heading {
+      display: flex;
+      align-items: end;
+    }
+
+    .sidebar__item--heading {
+      margin-block-end: 0.4rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.35px;
+      font-weight: 500;
+      color: var(--gray--primary);
+      transition: color 200ms ease-in;
+    }
+
+    .sidebar__list:has(.sidebar__link):hover .sidebar__item--heading {
+      color: var(--gray--secondary);
+    }
+
+    .sidebar__link {
+      display: flex;
+      text-decoration: none;
+      block-size: 100%;
+      align-items: center;
+      gap: 0.5rem;
+      outline: 2px solid transparent;
+      border-radius: inherit;
+      padding-inline: 0.5rem;
+    }
+
+    .icon {
+      aspect-ratio: 1;
+      block-size: 100%;
+      display: inline-grid;
+
+      svg {
+        place-self: center;
+        inline-size: var(--svg);
+        block-size: var(--svg);
+        fill: var(--gray--primary);
+      }
+    }
+
+    .text {
+      pointer-events: none;
+      color: var(--gray--secondary);
+      font-size: 0.875em;
+      font-weight: 500;
+      transition: color 266ms ease-out;
+    }
+
+    .sidebar__link:hover {
+      background: var(--bg--hover);
+
+      .icon svg {
+        fill: var(--accent--primary);
+      }
+
+      .text {
+        color: var(--dark--primary);
+      }
+    }
+
+    .sidebar__link:focus {
+      outline: 2px solid var(--accent--secondary);
+      outline-offset: -2px;
+      background: var(--bg--focus);
+
+      .icon svg {
+        fill: var(--accent--primary);
+      }
+    }
+
+    .sidebar__link:active {
+      background-color: var(--bg--active);
+    }
+
+    aside:not(:has(:checked)) .toggle--open,
+    aside:has(:checked) .toggle--close {
+      opacity: 0;
+    }
+
+    aside:not(:has(:checked)) :where(figcaption, .item--heading) {
+      opacity: 0;
+    }
+
+    aside:has(:checked) :where(figcaption, .item--heading) {
+      transition: opacity 300ms ease-in 200ms;
+    }
+
+    [data-tooltip]::before {
+      content: attr(data-tooltip);
+      position: fixed;
+      translate: calc(var(--item) * 1.5) calc(var(--item) * 0.125);
+      border-radius: var(--brad-inner);
+      padding: 0.5rem 0.75rem;
+      color: #ddd;
+      background-color: hsl(198 16 30);
+      box-shadow: 0 6px 12px -6px #0003;
+      opacity: 0;
+      pointer-events: none;
+      scale: 0 0;
+      z-index: 999;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 350ms ease-out;
+    }
+
+    aside:not(:has(:checked)) .sidebar__link:where(:hover, :focus-visible)[data-tooltip]::before {
+      opacity: 1;
+      scale: 1;
     }
   </style>
 </head>
+
 <body>
 
-<!-- SIDEBAR -->
-<aside class="sidebar">
-  <h2>Pris Embalagens</h2>
+  <!-- SIDEBAR -->
+  <aside class="vertical-sidebar"> <input type="checkbox" role="switch" id="checkbox-input" class="checkbox-input"
+      checked />
 
-  <nav class="menu">
-    <a href="page1.html">Macro Gestão</a>
-    <a href="page2.html">Micro Gestão</a>
-    <a href="page3.html">Inadimplencia</a>
-    <a href="page4.html">DRE</a>
-    <a href="page5.html">Fluxo de Caixa</a>
-    <a href="page6.html">OTE</a>
-    <a href="page7.html">Faturamento</a>
-    <a href="page8.html" class="active">Ecommerce</a>
-  </nav>
+    <nav class="menu">
+      <header>
+        <div class="sidebar__toggle-container"> <label tabindex="0" for="checkbox-input" id="label-for-checkbox-input"
+            class="nav__toggle"> <span class="toggle--icons" aria-hidden="true"> <svg width="24" height="24"
+                viewBox="0 0 24 24" class="toggle-svg-icon toggle--open">
+                <!-- Toggle = -->
+                <path
+                  d="M3 5a1 1 0 1 0 0 2h18a1 1 0 1 0 0-2zM2 12a1 1 0 0 1 1-1h18a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1M2 18a1 1 0 0 1 1-1h18a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1">
+                </path>
+              </svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" class="toggle-svg-icon toggle--close">
+                <!-- Toggle X -->
+                <path
+                  d="M18.707 6.707a1 1 0 0 0-1.414-1.414L12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 1 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12z">
+                </path>
+              </svg> </span> </label> </div>
+        <figure> <img class="codepen-logo" src="../assets/images/Logosider.png" alt="" />
+          <figcaption>
+            <p class="user-id">Pris</p>
+            <p class="user-role">Embalagens</p>
+          </figcaption>
+        </figure>
+      </header>
+      <section class="sidebar__wrapper">
+        <ul class="sidebar__list list--primary">
+          <li class="sidebar__item item--heading">
+            <h2 class="sidebar__item--heading">general</h2>
+          </li>
+          <li class="sidebar__item"> <a class="sidebar__link" href="page1.html" data-tooltip="Macro Gestão"> <span
+                class="icon"> <svg width="16" height="16" fill="currentColor" class="bi bi-inbox" viewBox="0 0 16 16">
+                </svg> </span>
+              <span class="text">Macro Gestão</span> </a> </li>
+          <li class="sidebar__item"> <a class="sidebar__link" href="page2.html" data-tooltip="Favourite"> <span
+                class="icon">
+                <svg width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                </svg> </span>
+              <span class="text">Micro Gestão</span> </a> </li>
+          <li class="sidebar__item"> <a class="sidebar__link" href="page3.html" data-tooltip="Sent"> <span class="icon">
+                <svg width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                </svg> </span> <span class="text">Inadimplencia</span> </a> </li>
+          <li class="sidebar__item"> <a class="sidebar__link" href="page4.html" data-tooltip="Draft"> <span
+                class="icon"> <svg width="16" height="16" fill="currentColor" class="bi bi-envelope-exclamation"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
+                </svg> </span> <span class="text">DRE</span> </a> </li>
+          <li class="sidebar__item"> <a class="sidebar__link" href="page5.html" data-tooltip="Archive"> <span
+                class="icon"> <svg width="16" height="16" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
+                </svg> </span> <span class="text">Fluxo de Caixa</span> </a> </li>
+          <li class="sidebar__item"> <a class="sidebar__link" href="page6.html" data-tooltip="Trash"> <span
+                class="icon"> <svg width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                </svg> </span> <span class="text">OTE</span> </a> </li>
+          <li class="sidebar__item"> <a class="sidebar__link" href="page7.html" data-tooltip="Trash"> <span
+                class="icon"> <svg width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                </svg> </span> <span class="text">Faturamento</span> </a> </li>
+          <li class="sidebar__item"> <a class="sidebar__link" href="page8.html" class="active" data-tooltip="Trash">
+              <span class="icon"> <svg width="16" height="16" fill="currentColor" class="bi bi-trash"
+                  viewBox="0 0 16 16">
+                </svg> </span> <span class="text">Ecommerce</span> </a> </li>
+        </ul>
+        <ul class="sidebar__list list--secondary">
+          <li class="sidebar__item item--heading">
+            <h2 class="sidebar__item--heading">general</h2>
+          </li>
+          <li class="sidebar__item"> <a class="sidebar__link" href="../index.html" data-tooltip="Voltar"> <span
+                class="icon"> <svg width="16" height="16" fill="currentColor" class="bi bi-person-circle"
+                  viewBox="0 0 16 16">
+                </svg> </span> <span class="text">Voltar</span> </a> </li>
+          <li class="sidebar__item"> <a class="sidebar__link" onclick="logout()" data-tooltip="Voltar"> <span
+                class="icon"> <svg width="16" height="16" fill="currentColor" class="bi bi-person-circle"
+                  viewBox="0 0 16 16">
+                </svg> </span> <span class="text">Sair</span> </a> </li>
+        </ul>
+      </section>
+    </nav>
 
-  <div class="bottom">
-    <button onclick="voltar()">⬅ Voltar</button>
-    <button onclick="logout()" style="margin-top:10px;">Sair</button>
+
+    <div class="bottom">
+
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <div class="top-bar">
+      <span>Ecommerce</span>
+    </div>
+
+    <div class="iframe-container">
+      <iframe
+        src="https://app.powerbi.com/view?r=eyJrIjoiN2JlZWJiZWItOGRhNi00YjgxLThiY2MtNzM3ZWQ3NWUyM2VhIiwidCI6IjVkYTc1NGNjLTE1YWQtNGU3ZS04MmNlLWY2ZGEzMzBkNTg3OCJ9"
+        allowfullscreen>
+      </iframe>
+    </div>
+
   </div>
-</aside>
 
-<!-- CONTENT -->
-<div class="content">
+  <script src="auth-guard.js"></script>
 
-  <div class="top-bar">
-    <span>Ecommerce</span>
-  </div>
-
-  <div class="iframe-container">
-    <iframe
-      src="https://app.powerbi.com/view?r=eyJrIjoiN2JlZWJiZWItOGRhNi00YjgxLThiY2MtNzM3ZWQ3NWUyM2VhIiwidCI6IjVkYTc1NGNjLTE1YWQtNGU3ZS04MmNlLWY2ZGEzMzBkNTg3OCJ9"
-      allowfullscreen>
-    </iframe>
-  </div>
-
-</div>
-
-<script src="auth-guard.js"></script>
-
-<script>
-  function voltar() {
-    window.location.href = "../index.html";
-  }
-
-  function logout() {
-    firebase.auth().signOut().then(() => {
+  <script>
+    function voltar() {
       window.location.href = "../index.html";
-    });
-  }
-</script>
+    }
+
+    function logout() {
+      firebase.auth().signOut().then(() => {
+        window.location.href = "../index.html";
+      });
+    }
+  </script>
 
 </body>
+
 </html>
